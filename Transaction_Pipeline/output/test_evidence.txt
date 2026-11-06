@@ -1,0 +1,28 @@
+TEST EXECUTION
+Command: python -m unittest discover -s tests -t . -v
+Result: 31 tests passed; 0 failures; 0 errors.
+Coverage includes happy path, empty input, malformed rows, missing/null values, duplicates,
+conflicting duplicates, curated replay conflicts, partial/extended transaction replay rejection,
+account master-data validation, amount precision, currency and reference checks, imbalance,
+event ordering, late arrival, backfill, idempotency, rollback/retry, deterministic generation,
+and expected-label comparison.
+
+SAMPLE PIPELINE EXECUTION
+Command: python -m txn_pipeline generate --txns 150 --seed 42 --anomaly-rate 0.12
+Generated: 40 accounts, 150 transactions, 389 transaction-leg input rows.
+First run: SUCCESS; 389 read; 335 accepted; 335 inserted; 54 rejected; 130 transactions accepted;
+20 transactions rejected; 54 reject rows persisted.
+Second run: SUCCESS; 389 read; 335 accepted; 0 inserted; 335 already loaded; 54 rejected;
+0 duplicate reject rows inserted. Existing curated data unchanged.
+
+RECONCILIATION
+Command: python -m txn_pipeline report
+Result: 12 of 12 checks PASS (0 violations), including currency-aware debit/credit and net movement
+reconciliation, referential integrity, transaction/leg counts, run count arithmetic and reject lineage.
+
+PERFORMANCE
+Command: python -m txn_pipeline benchmark --txns 40000
+Generated: 100,353 rows in 2.36 seconds.
+Per-row insert: 5.56 seconds total; 3.23 seconds validation; 1.72 seconds load; 18,039 rows/second.
+Batch executemany: 4.07 seconds total; 2.25 seconds validation; 1.49 seconds load; 24,654 rows/second.
+Batch run was approximately 27% faster in this execution environment. Timings are hardware-dependent.

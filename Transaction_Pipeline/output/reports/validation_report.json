@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "check": "curated_txns_balanced",
+      "violations": 0,
+      "passed": true
+    },
+    {
+      "check": "total_debits_equal_total_credits",
+      "violations": 0,
+      "passed": true
+    },
+    {
+      "check": "net_movement_sums_to_zero",
+      "violations": 0,
+      "passed": true
+    },
+    {
+      "check": "no_orphan_accounts",
+      "violations": 0,
+      "passed": true
+    },
+    {
+      "check": "no_currency_mismatch_vs_account",
+      "violations": 0,
+      "passed": true
+    },
+    {
+      "check": "fact_txn_leg_count_matches_legs",
+      "violations": 0,
+      "passed": true
+    },
+    {
+      "check": "fact_txn_total_matches_debits",
+      "violations": 0,
+      "passed": true
+    },
+    {
+      "check": "no_txn_without_legs",
+      "violations": 0,
+      "passed": true
+    },
+    {
+      "check": "run_counts_reconcile (read = accepted + rejected)",
+      "violations": 0,
+      "passed": true
+    },
+    {
+      "check": "run_counts_reconcile (accepted = inserted + already_loaded)",
+      "violations": 0,
+      "passed": true
+    },
+    {
+      "check": "rejects_traceable_to_run_and_source",
+      "violations": 0,
+      "passed": true
+    },
+    {
+      "check": "curated_legs_equal_sum_of_inserted_rows",
+      "violations": 0,
+      "passed": true
+    }
+  ],
+  "reject_reasons": {
+    "TXN_REJECTED_PEER_LEG": 27,
+    "INVALID_AMOUNT": 5,
+    "DUPLICATE_CONFLICT": 4,
+    "TXN_LEG_TS_SKEW": 3,
+    "TXN_IMBALANCE": 3,
+    "MISSING_REQUIRED_FIELD": 2,
+    "MALFORMED_ROW": 2,
+    "INGESTED_BEFORE_EVENT": 2,
+    "CURRENCY_MISMATCH": 2,
+    "ACCOUNT_CLOSED": 2,
+    "UNKNOWN_ACCOUNT": 1,
+    "DUPLICATE_LEG": 1
+  }
+}
